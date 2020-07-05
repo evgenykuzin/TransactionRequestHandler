@@ -1,0 +1,8 @@
+requestId,clientId,operation,asset,assetCount
+3,1,buy,AAA,100
+2,3,sell,AAA,150
+1,1,buy,BBB,4
+4,2,sell,BBB,100
+5,3,buy,BBB,96
+6,4,sell,CCC,110
+7,4,buy,DDD,20

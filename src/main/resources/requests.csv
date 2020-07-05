@@ -1,0 +1,10 @@
+requestId,clientId,operation,asset,assetCount
+1,1,buy,usb,100
+2,2,sell,usb,200
+3,2,sell,usb,100
+4,3,buy,usa,200
+5,5,buy,usd,200
+6,8,buy,usa,20
+7,4,sell,usa,200
+8,7,sell,usc,50
+9,9,buy,usa,200
