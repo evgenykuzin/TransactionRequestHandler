@@ -16,11 +16,11 @@ public class Main {
     public static String balancePath;
     @Argument(index = 1, required = true)
     public static String requestsPath;
-    @Option(name = "-b")
+    @Option(name = "-b") //name of buy operation in csv file
     public static String buyOperationName = "buy";
-    @Option(name = "-s")
+    @Option(name = "-s")//name of sell operation in csv file
     public static String sellOperationName = "sell";
-    @Option(name = "-d")
+    @Option(name = "-d")//delimiter in csv file
     public static char delimiter = ',';
 
     public static void main(String[] args) throws IOException {

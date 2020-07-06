@@ -42,25 +42,27 @@ public class RequestHandler {
                 int buyAssetCount = buyRequest.getAssetCount();
                 int sellAssetCount = sellRequest.getAssetCount();
                 if (buyAsset.equals(sellAsset)) {
-                    Client clientBuy = clients.getClientById(buyRequest.getClientId());
-                    Client clientSell = clients.getClientById(sellRequest.getClientId());
-                    if (clientBuy == null)
-                        throw new IllegalDataException("client with id " + buyRequest.getClientId() + " doesn't exist");
-                    if (clientSell == null)
-                        throw new IllegalDataException("client with id " + sellRequest.getClientId() + " doesn't exist");
-                    if (buyAssetCount <= sellAssetCount) {
-                        if (clientSell.hasAssetsCountOf(sellAsset, buyAssetCount)) {
-                            i++;
-                            change(clientBuy, clientSell, buyAsset, buyAssetCount);
-                            reports.add(createReport(i, buyRequest, sellRequest));
-                        }
+                    Client clientBuy = getClient(buyRequest);
+                    Client clientSell = getClient(sellRequest);
+                    if (buyAssetCount <= sellAssetCount && clientSell.hasAssetsCountOf(sellAsset, buyAssetCount)) {
+                        i++;
+                        change(clientBuy, clientSell, buyAsset, buyAssetCount);
+                        reports.add(createReport(i, buyRequest, sellRequest));
+
                     }
                 }
             }
         }
     }
 
-    public Report createReport(int i, Request buyRequest, Request sellRequest) {
+    private Client getClient(Request request) {
+        Client client = clients.getClientById(request.getClientId());
+        if (client == null)
+            throw new IllegalDataException("client with id " + request.getClientId() + " doesn't exist");
+        return client;
+    }
+
+    private Report createReport(int i, Request buyRequest, Request sellRequest) {
         int buyAssetCount = buyRequest.getAssetCount();
         return new Report(
                 i,
